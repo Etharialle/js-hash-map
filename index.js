@@ -3,8 +3,11 @@
 //}
 
   class HashMap {
-    constructor () {
-
+    constructor (capacity = 16, loadFactor = .75, buckets) {
+        this.capacity = capacity;
+        this.loadFactor = loadFactor;
+        this.buckets = new Array(capacity);
+        
     }
     hash(key) {
         let hashCode = 0;
@@ -16,8 +19,9 @@
         return hashCode;
     }
     set(key, value) {
-        
+
     }
 }
 
-
+const hashTable = new HashMap();
+console.log(hashTable);
