@@ -62,7 +62,15 @@ class HashMap {
         this.buckets = new Array(this.capacity);
     }
     keys() {
-
+        let keys = [];
+        for (const bucket in this.buckets) {
+            let kvPair = this.buckets[bucket];
+            for (const key in kvPair) {
+                keys.push(key);
+            }
+            
+        }
+        return keys;
     }
 }
 
@@ -73,6 +81,8 @@ hashTable.set("ti", "another");
 hashTable.set("t", "blah");
 hashTable.set("d", "overwrite");
 hashTable.set("titles", "stuff");
+hashTable.set("Carlos", "stuff");
+hashTable.set("Carla", "stuff");
 console.log(hashTable);
 console.log(hashTable.get("title"));
 console.log(hashTable.get("etharialle"));
@@ -86,3 +96,7 @@ console.log(hashTable.length());
 console.log(hashTable);
 //console.log(hashTable.clear());
 //console.log(hashTable);
+console.log(hashTable.keys());
+hashTable.capacity = 32;
+console.log(hashTable);
+console.log(hashTable.get("title"));
