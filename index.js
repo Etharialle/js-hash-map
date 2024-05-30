@@ -2,7 +2,7 @@
 //    throw new Error("Trying to access index out of bound");
 //}
 
-  class HashMap {
+class HashMap {
     constructor (capacity = 16, loadFactor = .75, buckets) {
         this.capacity = capacity;
         this.loadFactor = loadFactor;
@@ -20,12 +20,69 @@
     }
     set(key, value) {
         const index = this.hash(key) % this.capacity;
-        this.buckets[index] = value;
+        //this.buckets[index] = {};
+        //this.buckets[index][key] = value;
+        this.buckets[index] = {...this.buckets[index], [key]:value};
+    }
+    get(key) {
+        const index = this.hash(key) % this.capacity;
+        if (!this.buckets[index] || !this.buckets[index][key]) {
+            return null;
+        }
+        return this.buckets[index][key];
+    }
+    has(key) {
+        const index = this.hash(key) % this.capacity;
+        if (!this.buckets[index] || !this.buckets[index][key]) {
+            return false;
+        }
+        return true;
+    }
+    remove(key) {
+        const index = this.hash(key) % this.capacity;
+        if (!this.buckets[index] || !this.buckets[index][key]) {
+            return false;
+        }
+        delete this.buckets[index][key];
+        if (Object.keys(this.buckets[index]).length === 0) {
+            this.buckets[index] = undefined;
+        }
+        return true;
+    }
+    length() {
+        let size = 0;
+        for (const index of this.buckets) {
+            if (index) {
+                size++
+            }
+        }
+        return size;
+    }
+    clear() {
+        this.buckets = new Array(this.capacity);
+    }
+    keys() {
+
     }
 }
 
 const hashTable = new HashMap();
 console.log(hashTable);
 hashTable.set("title", "lotr");
+hashTable.set("ti", "another");
+hashTable.set("t", "blah");
+hashTable.set("d", "overwrite");
+hashTable.set("titles", "stuff");
 console.log(hashTable);
+console.log(hashTable.get("title"));
+console.log(hashTable.get("etharialle"));
+console.log(hashTable.has("title"));
+console.log(hashTable.has("etharialle"));
 
+//console.log(hashTable.remove("ti"));
+//console.log(hashTable.remove("t"));
+console.log(hashTable);
+console.log(hashTable.length());
+console.log(hashTable);
+//console.log(hashTable.clear());
+//console.log(hashTable);
