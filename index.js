@@ -19,9 +19,13 @@
         return hashCode;
     }
     set(key, value) {
-
+        const index = this.hash(key) % this.capacity;
+        this.buckets[index] = value;
     }
 }
 
 const hashTable = new HashMap();
 console.log(hashTable);
+hashTable.set("title", "lotr");
+console.log(hashTable);
+
