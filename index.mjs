@@ -1,6 +1,3 @@
-//if (index < 0 || index >= buckets.length) {
-//    throw new Error("Trying to access index out of bound");
-//}
 import { LinkedList } from "./linkedList.mjs";
 import { Node } from "./linkedList.mjs";
 class HashMap {
@@ -33,7 +30,6 @@ class HashMap {
             return;
         }
         this.buckets[index].append(newNode);
-        //this.buckets[index] = {...this.buckets[index], [key]:value};
     }
     get(key) {
         const index = this.hash(key) % this.capacity;
@@ -125,7 +121,6 @@ class HashMap {
 }
 
 const hashTable = new HashMap();
-//console.log(hashTable);
 hashTable.set("title", "lotr");
 hashTable.set("ti", "another");
 hashTable.set("t", "blah");
@@ -137,38 +132,19 @@ hashTable.set("Etharialle", "awesome");
 hashTable.set("TOP", "the best");
 hashTable.set("Numbers", 0);
 hashTable.set("c", "stuff");
-console.log(hashTable);
 hashTable.set("f", "stuff");
-console.log(hashTable.length());
-console.log(hashTable);
 hashTable.set("g", "stuff");
-console.log(hashTable.length());
-console.log(hashTable);
 hashTable.set("h", "stuff");
 hashTable.set("i", "stuff");
+console.log(hashTable.get("t"));
+console.log(hashTable.get("etharialle"));
+console.log(hashTable.has("title"));
+console.log(hashTable.has("etharialle"));
+console.log(hashTable.remove("ti"));
+console.log(hashTable.remove("t"));
 console.log(hashTable);
-
-//console.log(hashTable);
-//console.log(hashTable.get("t"));
-//console.log(hashTable.get("etharialle"));
-//console.log(hashTable.has("title"));
-//console.log(hashTable.has("etharialle"));
-
-//console.log(hashTable.remove("ti"));
-//console.log(hashTable.remove("t"));
-//console.log(hashTable);
-//console.log(hashTable.length());
-//console.log(hashTable);
-//console.log(hashTable.clear());
-//console.log(hashTable);
-
-//hashTable.capacity = 32;
-//console.log(hashTable);
-//console.log(hashTable.get("title"));
-//console.log(hashTable.buckets[4]);
-//console.log(hashTable.keys());
-//console.log(hashTable.values());
-//console.log(hashTable.entries());
-//console.log(hashTable);
-//console.log(hashTable.resize());
-//console.log(hashTable);
+console.log(hashTable.length());
+console.log(hashTable.keys());
+console.log(hashTable.values());
+console.log(hashTable.entries());
+console.log(hashTable);
