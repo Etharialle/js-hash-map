@@ -20,9 +20,10 @@ class HashMap {
         return hashCode;
     }
     set(key, value) {
+        if (this.length() >= this.capacity * this.loadFactor){
+            this.resize();
+        }
         const index = this.hash(key) % this.capacity;
-        //this.buckets[index] = {};
-        //this.buckets[index][key] = value;
         const nodeValue = {[key]:value}
         const newNode = new Node(nodeValue);
         if (!this.buckets[index]) {
@@ -114,19 +115,39 @@ class HashMap {
         return entriesArray;
     }
     resize() {
-        
+        const entriesArray = this.entries();
+        this.capacity *= 2;
+        this.clear();
+        for (const entry of entriesArray) {
+            this.set(entry[0],entry[1]);
+        }
     }
 }
 
 const hashTable = new HashMap();
 //console.log(hashTable);
 hashTable.set("title", "lotr");
-//hashTable.set("ti", "another");
+hashTable.set("ti", "another");
 hashTable.set("t", "blah");
 hashTable.set("d", "overwrite");
-//hashTable.set("titles", "stuff");
-//hashTable.set("Carlos", "stuff");
-//hashTable.set("Carla", "stuff");
+hashTable.set("titles", "stuff");
+hashTable.set("Carlos", "stuff");
+hashTable.set("Carla", "stuff");
+hashTable.set("Etharialle", "awesome");
+hashTable.set("TOP", "the best");
+hashTable.set("Numbers", 0);
+hashTable.set("c", "stuff");
+console.log(hashTable);
+hashTable.set("f", "stuff");
+console.log(hashTable.length());
+console.log(hashTable);
+hashTable.set("g", "stuff");
+console.log(hashTable.length());
+console.log(hashTable);
+hashTable.set("h", "stuff");
+hashTable.set("i", "stuff");
+console.log(hashTable);
+
 //console.log(hashTable);
 //console.log(hashTable.get("t"));
 //console.log(hashTable.get("etharialle"));
@@ -145,7 +166,9 @@ hashTable.set("d", "overwrite");
 //console.log(hashTable);
 //console.log(hashTable.get("title"));
 //console.log(hashTable.buckets[4]);
-console.log(hashTable.keys());
-console.log(hashTable.values());
-console.log(hashTable.entries());
+//console.log(hashTable.keys());
+//console.log(hashTable.values());
+//console.log(hashTable.entries());
+//console.log(hashTable);
+//console.log(hashTable.resize());
 //console.log(hashTable);
